@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 int findIndex(char symbol);
 const char table[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // length 36
@@ -42,6 +43,7 @@ int main() {
 int findIndex(char symbol) {
   int index ;
   int i;
+  symbol = toupper(symbol);
 
   for (i = 0;i<36;i++) {
     if (symbol == table[i]) {
