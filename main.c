@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+ #include <string.h>
 
 int findIndex(char symbol);
+int toDecimal(char number[], int base);
 const char table[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // length 36
 
 int main() {
@@ -51,4 +53,17 @@ int findIndex(char symbol) {
     }
   }
   exit(1);
+}
+
+
+int toDecimal(char number[], int base) {
+  int length = strlen(number);
+  int i;
+  int decimal_number = 0;
+
+  for (i = 0; i < length; ++i) {
+    decimal_number = (decimal_number * base) + findIndex(number[i]);
+  }
+
+  return decimal_number;
 }
