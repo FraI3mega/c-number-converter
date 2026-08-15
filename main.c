@@ -1,7 +1,7 @@
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
- #include <string.h>
+#include <string.h>
 
 int findIndex(char symbol);
 int toDecimal(char number[], int base);
@@ -15,51 +15,50 @@ int main() {
   printf("1: input to decimal\n2: decimal to other\n3: any to any\n4: Quit\n");
   int operation;
   printf("Choose 1,2,3 or 4: ");
-  scanf("%d",&operation);
+  scanf("%d", &operation);
 
   switch (operation) {
-    case 1:
-      printf("1: Convert from input to decimal\n");
-      char input[30];
-      int base;
-      printf("Type in the input base (2-36): ");
-      scanf("%d", &base);
+  case 1:
+    printf("1: Convert from input to decimal\n");
+    char input[30];
+    int base;
+    printf("Type in the input base (2-36): ");
+    scanf("%d", &base);
 
-      printf("Type in the input number: ");
-      scanf("%s", input);
+    printf("Type in the input number: ");
+    scanf("%s", input);
 
-      printf("The number in decimal is %d\n",toDecimal(input,base));
-      break;
-    case 2:
-      printf("2: Convert from decimal to other\n");
-      break;
-    case 3:
-      printf("3: Convert from any to any\n");
-      break;
-    case 4:
-      printf("4: Quit\n");
-      return 0;
-      break;
-    default:
-      printf("Choose a correct operation\n");
+    printf("The number in decimal is %d\n", toDecimal(input, base));
+    break;
+  case 2:
+    printf("2: Convert from decimal to other\n");
+    break;
+  case 3:
+    printf("3: Convert from any to any\n");
+    break;
+  case 4:
+    printf("4: Quit\n");
+    return 0;
+    break;
+  default:
+    printf("Choose a correct operation\n");
   }
 
   return 0;
 }
 
 int findIndex(char symbol) {
-  int index ;
+  int index;
   int i;
   symbol = toupper(symbol);
 
-  for (i = 0;i<36;i++) {
+  for (i = 0; i < 36; i++) {
     if (symbol == table[i]) {
       return i;
     }
   }
   exit(1);
 }
-
 
 int toDecimal(char number[], int base) {
   int length = strlen(number);
