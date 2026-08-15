@@ -21,9 +21,14 @@ int main() {
     case 1:
       printf("1: Convert from input to decimal\n");
       char input[30];
+      int base;
+      printf("Type in the input base (2-36): ");
+      scanf("%d", &base);
+
       printf("Type in the input number: ");
       scanf("%s", input);
-      printf("%d", findIndex('A'));
+
+      printf("The number in decimal is %d\n",toDecimal(input,base));
       break;
     case 2:
       printf("2: Convert from decimal to other\n");
