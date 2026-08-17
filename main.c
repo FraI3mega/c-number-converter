@@ -5,7 +5,9 @@
 
 int findIndex(char symbol);
 int toDecimal(char number[], int base);
-const char table[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // length 36
+char *toOther(int number, int base);
+
+const char lookup_table[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // length 36
 
 int main() {
 
@@ -14,6 +16,8 @@ int main() {
   printf("|=========================|\n");
   printf("1: input to decimal\n2: decimal to other\n3: any to any\n4: Quit\n");
   int operation;
+  int base;
+
   printf("Choose 1,2,3 or 4: ");
   scanf("%d", &operation);
 
@@ -21,7 +25,6 @@ int main() {
   case 1:
     printf("1: Convert from input to decimal\n");
     char input[30];
-    int base;
     printf("Type in the input base (2-36): ");
     scanf("%d", &base);
 
@@ -32,6 +35,16 @@ int main() {
     break;
   case 2:
     printf("2: Convert from decimal to other\n");
+
+    printf("Type in the output base (2-36): ");
+    scanf("%d", &base);
+
+    int input_int;
+    printf("Type in the input number: ");
+    scanf("%d", &input_int);
+
+    char *str = toOther(input_int, base);
+    printf("The number %d in base %d is %s\n", input_int, base, str);
     break;
   case 3:
     printf("3: Convert from any to any\n");
@@ -53,7 +66,7 @@ int findIndex(char symbol) {
   symbol = toupper(symbol);
 
   for (i = 0; i < 36; i++) {
-    if (symbol == table[i]) {
+    if (symbol == lookup_table[i]) {
       return i;
     }
   }
@@ -70,4 +83,20 @@ int toDecimal(char number[], int base) {
   }
 
   return decimal_number;
+}
+
+char *toOther(int number, int base) {
+  char static other_number[30] = "";
+  int symbol_number;
+  int len = 0;
+  int index;
+  for (; number > 0; number = number / base) {
+    symbol_number = number % base;
+    for (index = len-1; index >= 0; index--) {
+      other_number[index + 1] = other_number[index];
+    }
+    other_number[0] = lookup_table[symbol_number];
+    len++;
+  }
+  return other_number;
 }
