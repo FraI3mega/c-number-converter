@@ -17,6 +17,9 @@ int main() {
   printf("1: input to decimal\n2: decimal to other\n3: any to any\n4: Quit\n");
   int operation;
   int base;
+  int base_out;
+  char input[30];
+  char *output;
 
   printf("Choose 1,2,3 or 4: ");
   scanf("%d", &operation);
@@ -24,7 +27,6 @@ int main() {
   switch (operation) {
   case 1:
     printf("1: Convert from input to decimal\n");
-    char input[30];
     printf("Type in the input base (2-36): ");
     scanf("%d", &base);
 
@@ -43,11 +45,25 @@ int main() {
     printf("Type in the input number: ");
     scanf("%d", &input_int);
 
-    char *str = toOther(input_int, base);
-    printf("The number %d in base %d is %s\n", input_int, base, str);
+    output = toOther(input_int, base);
+    printf("The number %d in base %d is %s\n", input_int, base, output);
     break;
   case 3:
     printf("3: Convert from any to any\n");
+
+    printf("Type in the input base (2-36): ");
+    scanf("%d", &base);
+
+    printf("Type in the input number: ");
+    scanf("%s", input);
+
+    printf("Type in the output base (2-36): ");
+    scanf("%d", &base_out);
+
+    output = toOther(toDecimal(input, base), base_out);
+
+    printf("The number '%s' in base %d is '%s' in base %d", input, base, output, base_out);
+
     break;
   case 4:
     printf("4: Quit\n");
@@ -92,7 +108,7 @@ char *toOther(int number, int base) {
   int index;
   for (; number > 0; number = number / base) {
     symbol_number = number % base;
-    for (index = len-1; index >= 0; index--) {
+    for (index = len - 1; index >= 0; index--) {
       other_number[index + 1] = other_number[index];
     }
     other_number[0] = lookup_table[symbol_number];
