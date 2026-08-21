@@ -9,6 +9,14 @@ char *toOther(int number, int base);
 
 const char lookup_table[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // length 36
 
+/*
+ * TODO: list of changes
+ * - use dynamic input mem size
+ * - switch to a main loop
+ * - error handling
+ * - other converters
+ *
+ */
 int main() {
 
   printf("|=========================|\n");
