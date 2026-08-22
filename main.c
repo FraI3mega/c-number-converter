@@ -35,8 +35,11 @@ int main() {
   switch (operation) {
   case 1:
     printf("1: Convert from input to decimal\n");
-    printf("Type in the input base (2-36): ");
-    scanf("%d", &base);
+
+    do {
+      printf("Type in the input base (2-36): ");
+      scanf("%d", &base);
+    } while (base < 2 || base > 36);
 
     printf("Type in the input number: ");
     scanf("%s", input);
@@ -46,8 +49,10 @@ int main() {
   case 2:
     printf("2: Convert from decimal to other\n");
 
-    printf("Type in the output base (2-36): ");
-    scanf("%d", &base);
+    do {
+      printf("Type in the output base (2-36): ");
+      scanf("%d", &base);
+    } while (base < 2 || base > 36);
 
     int input_int;
     printf("Type in the input number: ");
@@ -59,14 +64,18 @@ int main() {
   case 3:
     printf("3: Convert from any to any\n");
 
-    printf("Type in the input base (2-36): ");
-    scanf("%d", &base);
+    do {
+      printf("Type in the input base (2-36): ");
+      scanf("%d", &base);
+    } while (base < 2 || base > 36);
 
     printf("Type in the input number: ");
     scanf("%s", input);
 
-    printf("Type in the output base (2-36): ");
-    scanf("%d", &base_out);
+    do {
+      printf("Type in the output base (2-36): ");
+      scanf("%d", &base);
+    } while (base < 2 || base > 36);
 
     output = toOther(toDecimal(input, base), base_out);
 
