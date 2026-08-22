@@ -70,7 +70,8 @@ int main() {
 
     output = toOther(toDecimal(input, base), base_out);
 
-    printf("The number '%s' in base %d is '%s' in base %d", input, base, output, base_out);
+    printf("The number '%s' in base %d is '%s' in base %d", input, base, output,
+           base_out);
 
     break;
   case 4:
