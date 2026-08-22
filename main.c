@@ -6,6 +6,7 @@
 int findIndex(char symbol);
 int toDecimal(char number[], int base);
 char *toOther(int number, int base);
+int validate(char input[]);
 
 const char lookup_table[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // length 36
 
@@ -41,8 +42,10 @@ int main() {
       scanf("%d", &base);
     } while (base < 2 || base > 36);
 
-    printf("Type in the input number: ");
-    scanf("%s", input);
+    do {
+      printf("Type in the input number: ");
+      scanf("%s", input);
+    } while (validate(input));
 
     printf("The number in decimal is %d\n", toDecimal(input, base));
     break;
@@ -55,8 +58,10 @@ int main() {
     } while (base < 2 || base > 36);
 
     int input_int;
-    printf("Type in the input number: ");
-    scanf("%d", &input_int);
+    do {
+      printf("Type in the input number: ");
+      scanf("%s", input);
+    } while (validate(input));
 
     output = toOther(input_int, base);
     printf("The number %d in base %d is %s\n", input_int, base, output);
@@ -70,7 +75,7 @@ int main() {
     } while (base < 2 || base > 36);
 
     printf("Type in the input number: ");
-    scanf("%s", input);
+    scanf("%d", &input_int);
 
     do {
       printf("Type in the output base (2-36): ");
@@ -133,4 +138,18 @@ char *toOther(int number, int base) {
     len++;
   }
   return other_number;
+}
+
+int validate(char input[]) {
+  int i;
+  for (i = 0; i < strlen(input); i++) {
+    int symbol = (int)input[i];
+    if ((symbol > 47 && symbol < 58) || (symbol > 64 && symbol < 91) ||
+        (symbol > 96 && symbol < 123)) {
+      continue;
+    }
+    printf("Invalid character at %d: %c\n", i + 1, input[i]);
+    return 1;
+  }
+  return 0;
 }
