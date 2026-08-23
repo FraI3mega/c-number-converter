@@ -29,6 +29,7 @@ int main() {
   int base_out;
   char input[30];
   char *output;
+  int number_dec;
 
   printf("Choose 1,2,3 or 4: ");
   scanf("%d", &operation);
@@ -47,7 +48,12 @@ int main() {
       scanf("%s", input);
     } while (validate(input));
 
-    printf("The number in decimal is %d\n", toDecimal(input, base));
+    number_dec = toDecimal(input, base);
+    if (number_dec == -1) {
+      printf("The input contains characters larger than the base\n");
+      break;
+    }
+    printf("The number in decimal is %d\n", number_dec);
     break;
   case 2:
     printf("2: Convert from decimal to other\n");
@@ -82,7 +88,13 @@ int main() {
       scanf("%d", &base);
     } while (base < 2 || base > 36);
 
-    output = toOther(toDecimal(input, base), base_out);
+    number_dec = toDecimal(input, base);
+    if (number_dec == -1) {
+      printf("The input contains characters larger than the base\n");
+      break;
+    }
+
+    output = toOther(number_dec, base_out);
 
     printf("The number '%s' in base %d is '%s' in base %d", input, base, output,
            base_out);
@@ -118,7 +130,11 @@ int toDecimal(char number[], int base) {
   int decimal_number = 0;
 
   for (i = 0; i < length; ++i) {
-    decimal_number = (decimal_number * base) + findIndex(number[i]);
+    int digit = findIndex(number[i]);
+    if (digit > base - 1) {
+      return -1;
+    }
+    decimal_number = (decimal_number * base) + digit;
   }
 
   return decimal_number;
