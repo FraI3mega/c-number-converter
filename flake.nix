@@ -2,7 +2,7 @@
   description = "C Template";
 
   inputs = {
-    nixpkgs.url = "nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/x86_64-linux";
     flake-utils = {
       url = "github:numtide/flake-utils";
