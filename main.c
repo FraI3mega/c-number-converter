@@ -13,7 +13,6 @@ const char lookup_table[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // length 36
 /*
  * TODO: list of changes
  * - use dynamic input mem size
- * - switch to a main loop
  * - error handling
  * - other converters
  *
@@ -23,91 +22,95 @@ int main() {
   printf("|=========================|\n");
   printf("| Number System converter |\n");
   printf("|=========================|\n");
-  printf("1: input to decimal\n2: decimal to other\n3: any to any\n4: Quit\n");
-  int operation;
-  int base;
-  int base_out;
-  char input[30];
-  char *output;
-  int number_dec;
 
-  printf("Choose 1,2,3 or 4: ");
-  scanf("%d", &operation);
+  while (1) {
+    printf("\nChoose an operation\n");
+    printf(
+        "1: input to decimal\n2: decimal to other\n3: any to any\n4: Quit\n");
+    int operation;
+    int base;
+    int base_out;
+    char input[30];
+    char *output;
+    int number_dec;
 
-  switch (operation) {
-  case 1:
-    printf("1: Convert from input to decimal\n");
+    printf("Choose 1,2,3 or 4: ");
+    scanf("%d", &operation);
 
-    do {
-      printf("Type in the input base (2-36): ");
-      scanf("%d", &base);
-    } while (base < 2 || base > 36);
+    switch (operation) {
+    case 1:
+      printf("1: Convert from input to decimal\n");
 
-    do {
-      printf("Type in the input number: ");
-      scanf("%s", input);
-    } while (validate(input));
+      do {
+        printf("Type in the input base (2-36): ");
+        scanf("%d", &base);
+      } while (base < 2 || base > 36);
 
-    number_dec = toDecimal(input, base);
-    if (number_dec == -1) {
-      printf("The input contains characters larger than the base\n");
+      do {
+        printf("Type in the input number: ");
+        scanf("%s", input);
+      } while (validate(input));
+
+      number_dec = toDecimal(input, base);
+      if (number_dec == -1) {
+        printf("The input contains characters larger than the base\n");
+        break;
+      }
+      printf("The number in decimal is %d\n", number_dec);
       break;
-    }
-    printf("The number in decimal is %d\n", number_dec);
-    break;
-  case 2:
-    printf("2: Convert from decimal to other\n");
+    case 2:
+      printf("2: Convert from decimal to other\n");
 
-    do {
-      printf("Type in the output base (2-36): ");
-      scanf("%d", &base);
-    } while (base < 2 || base > 36);
+      do {
+        printf("Type in the output base (2-36): ");
+        scanf("%d", &base);
+      } while (base < 2 || base > 36);
 
-    int input_int;
-    do {
-      printf("Type in the input number: ");
-      scanf("%s", input);
-    } while (validate(input));
+      int input_int;
+      do {
+        printf("Type in the input number: ");
+        scanf("%s", input);
+      } while (validate(input));
 
-    output = toOther(input_int, base);
-    printf("The number %d in base %d is %s\n", input_int, base, output);
-    break;
-  case 3:
-    printf("3: Convert from any to any\n");
-
-    do {
-      printf("Type in the input base (2-36): ");
-      scanf("%d", &base);
-    } while (base < 2 || base > 36);
-
-    printf("Type in the input number: ");
-    scanf("%d", &input_int);
-
-    do {
-      printf("Type in the output base (2-36): ");
-      scanf("%d", &base);
-    } while (base < 2 || base > 36);
-
-    number_dec = toDecimal(input, base);
-    if (number_dec == -1) {
-      printf("The input contains characters larger than the base\n");
+      output = toOther(input_int, base);
+      printf("The number %d in base %d is %s\n", input_int, base, output);
       break;
+    case 3:
+      printf("3: Convert from any to any\n");
+
+      do {
+        printf("Type in the input base (2-36): ");
+        scanf("%d", &base);
+      } while (base < 2 || base > 36);
+
+      printf("Type in the input number: ");
+      scanf("%d", &input_int);
+
+      do {
+        printf("Type in the output base (2-36): ");
+        scanf("%d", &base);
+      } while (base < 2 || base > 36);
+
+      number_dec = toDecimal(input, base);
+      if (number_dec == -1) {
+        printf("The input contains characters larger than the base\n");
+        break;
+      }
+
+      output = toOther(number_dec, base_out);
+
+      printf("The number '%s' in base %d is '%s' in base %d", input, base,
+             output, base_out);
+
+      break;
+    case 4:
+      printf("4: Quit\n");
+      return 0;
+      break;
+    default:
+      printf("Choose a correct operation\n");
     }
-
-    output = toOther(number_dec, base_out);
-
-    printf("The number '%s' in base %d is '%s' in base %d", input, base, output,
-           base_out);
-
-    break;
-  case 4:
-    printf("4: Quit\n");
-    return 0;
-    break;
-  default:
-    printf("Choose a correct operation\n");
   }
-
   return 0;
 }
 
