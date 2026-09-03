@@ -15,7 +15,9 @@ const char lookup_table[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // length 36
  * - use dynamic input mem size
  * - error handling
  * - other converters
- *
+ * - cli
+ * - --help
+ * - maybe man page
  */
 int main() {
 
