@@ -27,8 +27,8 @@ int main() {
 
   while (1) {
     printf("\nChoose an operation\n");
-    printf(
-        "1: input to decimal\n2: decimal to other\n3: any to any\n4: Quit\n");
+    printf("1: input to decimal\n2: decimal to other\n3: any to any\n4: RPN "
+           "Calculator\n5: Quit\n");
     int operation;
     int base;
     int base_out;
@@ -36,7 +36,7 @@ int main() {
     char *output;
     int number_dec;
 
-    printf("Choose 1,2,3 or 4: ");
+    printf("Choose 1,2,3,4 or 5: ");
     scanf("%d", &operation);
 
     switch (operation) {
@@ -106,6 +106,8 @@ int main() {
 
       break;
     case 4:
+      return 1;
+    case 5:
       printf("4: Quit\n");
       return 0;
       break;
