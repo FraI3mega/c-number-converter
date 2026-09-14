@@ -19,6 +19,11 @@ const char lookup_table[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // length 36
  * - --help
  * - maybe man page
  */
+
+struct Op {
+  char operand;
+  int number;
+};
 int main() {
 
   printf("|=========================|\n");
@@ -106,7 +111,7 @@ int main() {
 
       break;
     case 4:
-      return 1;
+      struct Op stack[40];
     case 5:
       printf("4: Quit\n");
       return 0;
