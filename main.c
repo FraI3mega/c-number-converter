@@ -19,6 +19,11 @@ const char lookup_table[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // length 36
  * - --help
  * - maybe man page
  */
+
+struct Op {
+  char operand;
+  int number;
+};
 int main() {
 
   printf("|=========================|\n");
@@ -32,7 +37,7 @@ int main() {
     int operation;
     int base;
     int base_out;
-    char input[30];
+    char input[100];
     char *output;
     int number_dec;
 
@@ -106,9 +111,51 @@ int main() {
 
       break;
     case 4:
-      return 1;
+      int stack[40];
+      int *stackPntr = stack;
+      int result;
+
+      // fgets(input, sizeof(input), stdin);
+      strcpy(input, "4 3 + 2 * -25 - 4 /");
+
+      char *token = strtok(input, " ");
+      while (token != NULL) {
+        printf("%s\n", token);
+        if (strcmp(token, "+") == 0) {
+          printf("1: %d 2: %d\n", *(stackPntr - 1), *(stackPntr));
+          result = *(stackPntr - 1) + *(stackPntr);
+          stackPntr -= 1;
+          *stackPntr = result;
+          printf("+: %d\n", result);
+        } else if (strcmp(token, "-") == 0) {
+          printf("1: %d 2: %d\n", *(stackPntr - 1), *(stackPntr));
+          result = *(stackPntr - 1) - *(stackPntr);
+          stackPntr -= 1;
+          *stackPntr = result;
+          printf("-: %d\n", result);
+        } else if (strcmp(token, "*") == 0) {
+          printf("1: %d 2: %d\n", *(stackPntr - 1), *(stackPntr));
+          result = *(stackPntr - 1) * *(stackPntr);
+          stackPntr -= 1;
+          *stackPntr = result;
+          printf("*: %d\n", result);
+        } else if (strcmp(token, "/") == 0) {
+          printf("1: %d 2: %d\n", *(stackPntr - 1), *(stackPntr));
+          result = *(stackPntr - 1) / *(stackPntr);
+          stackPntr -= 1;
+          *stackPntr = result;
+          printf("/: %d\n", result);
+        } else {
+          stackPntr++;
+          *stackPntr = atoi(token);
+        }
+        token = strtok(NULL, " ");
+      }
+      printf("Result: %d\n", *(stackPntr));
+      return 0;
+
     case 5:
-      printf("4: Quit\n");
+      printf("5: Quit\n");
       return 0;
       break;
     default:
