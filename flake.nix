@@ -2,7 +2,7 @@
   description = "C Template";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
     systems.url = "github:nix-systems/x86_64-linux";
     flake-utils = {
       url = "github:numtide/flake-utils";
@@ -31,6 +31,7 @@
           # Tip: you can use `nix-locate foo.h` to find the package that provides a header file, see https://github.com/nix-community/nix-index
         ];
         nativeBuildInputs = with pkgs; [
+          gdb
           # add build dependencies here
           ## For mesonbuild:
           #meson ninja
