@@ -114,45 +114,44 @@ int main() {
       int stack[40];
       int *stackPntr = stack;
       int result;
+      int op1;
+      int op2;
 
-      // fgets(input, sizeof(input), stdin);
-      strcpy(input, "4 3 + 2 * -25 - 4 /");
+      printf("Type in the expression: ");
+      scanf(" %[^\n]", input);
 
       char *token = strtok(input, " ");
       while (token != NULL) {
-        printf("%s\n", token);
         if (strcmp(token, "+") == 0) {
-          printf("1: %d 2: %d\n", *(stackPntr - 1), *(stackPntr));
-          result = *(stackPntr - 1) + *(stackPntr);
-          stackPntr -= 1;
-          *stackPntr = result;
-          printf("+: %d\n", result);
+          op1 = *(--stackPntr);
+          op2 = *(--stackPntr);
+          result = op1 + op2;
+          *stackPntr++ = result;
         } else if (strcmp(token, "-") == 0) {
-          printf("1: %d 2: %d\n", *(stackPntr - 1), *(stackPntr));
-          result = *(stackPntr - 1) - *(stackPntr);
-          stackPntr -= 1;
-          *stackPntr = result;
-          printf("-: %d\n", result);
+          op1 = *(--stackPntr);
+          op2 = *(--stackPntr);
+          result = op2 - op1;
+          *stackPntr++ = result;
         } else if (strcmp(token, "*") == 0) {
-          printf("1: %d 2: %d\n", *(stackPntr - 1), *(stackPntr));
-          result = *(stackPntr - 1) * *(stackPntr);
-          stackPntr -= 1;
-          *stackPntr = result;
-          printf("*: %d\n", result);
+          op1 = *(--stackPntr);
+          op2 = *(--stackPntr);
+          result = op1 * op2;
+          *stackPntr++ = result;
         } else if (strcmp(token, "/") == 0) {
-          printf("1: %d 2: %d\n", *(stackPntr - 1), *(stackPntr));
-          result = *(stackPntr - 1) / *(stackPntr);
-          stackPntr -= 1;
-          *stackPntr = result;
-          printf("/: %d\n", result);
+          op1 = *(--stackPntr);
+          op2 = *(--stackPntr);
+          result = op2 / op1;
+          *stackPntr++ = result;
         } else {
-          stackPntr++;
-          *stackPntr = atoi(token);
+          *stackPntr++ = atoi(token);
         }
         token = strtok(NULL, " ");
       }
-      printf("Result: %d\n", *(stackPntr));
-      return 0;
+      if (stackPntr - stack != 1) {
+        printf("Invalid equation\n");
+        break;
+      }
+      printf("Result: %d\n", *(--stackPntr));
 
     case 5:
       printf("5: Quit\n");
