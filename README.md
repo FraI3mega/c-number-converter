@@ -10,6 +10,22 @@ TODO: hero image
 - Any to any conversion (base between 2 and 36)
 - RPN calculator (integer numbers)
 
+### RPN 101
+
+Contrary to the commonly used infix notation (2 + 2), in the Reverse Polish Notation the operand follows the argument (2 2 +) 
+This in turn allows us to type mathematical equations without the use of parenthesis.
+
+
+| Infix | RPN |
+| -------------- | --------------- |
+| a + b | a b + |
+| a - b | a b - |
+| a * b | a b * |
+| a / b | a b / |
+| 2 * 3 | 2 3 * |
+| (2 - 1) * 3 + 7 | 2 1 - 3 7 + * |
+| 16 / 2 * 4 | 16 2 4 * / |
+
 ## Installation
 
 ### Precompiled Binary
