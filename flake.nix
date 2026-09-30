@@ -35,7 +35,10 @@
       {
         devShells.default = pkgs.mkShell {
           inherit nativeBuildInputs;
-
+          buildInputs = [
+            pkgs.pkgsCross.mingwW64.stdenv.cc
+            pkgs.pkgsCross.mingw32.stdenv.cc
+          ];
         };
 
         packages.default = pkgs.stdenv.mkDerivation {
