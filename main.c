@@ -18,7 +18,6 @@ const char lookup_table[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // length 36
  * - other converters
  * - cli
  * - square root
- * - exponetation
  */
 
 struct Op {
@@ -34,7 +33,7 @@ int main() {
   while (1) {
     printf("\nChoose an operation\n");
     printf("1: input to decimal\n2: decimal to other\n3: any to any\n4: RPN "
-           "Calculator\n5: Quit\n");
+           "Calculator\n5: Factorise number\n6: Quit\n");
     int operation;
     int base;
     int base_out;
@@ -42,7 +41,7 @@ int main() {
     char *output;
     int number_dec;
 
-    printf("Choose 1,2,3,4 or 5: ");
+    printf("Choose 1,2,3,4,5 or 6: ");
     scanf("%d", &operation);
 
     switch (operation) {
@@ -160,6 +159,29 @@ int main() {
       printf("Result: %d\n", *(--stackPntr));
 
     case 5:
+      printf("Type in the number to factorise: ");
+      scanf("%d", &number_dec);
+      int factors[100];
+      int div = 2;
+      int n = 0;
+      while (number_dec > 1) {
+        if (number_dec % div == 0) {
+          number_dec = number_dec / div;
+          factors[n] = div;
+          n++;
+        } else {
+          div++;
+        }
+      }
+      printf("The factors if this number are: ");
+      int i;
+      for (i = 0; i < n; i++) {
+        printf("%d ", factors[i]);
+      }
+      printf("\n");
+      continue;
+
+    case 6:
       printf("5: Quit\n");
       return 0;
       break;
