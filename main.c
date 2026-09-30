@@ -8,6 +8,7 @@ int findIndex(char symbol);
 int toDecimal(char number[], int base);
 char *toOther(int number, int base);
 int validate(char input[]);
+int factorise(int number, int *factors);
 
 const char lookup_table[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // length 36
 
@@ -167,17 +168,8 @@ int main() {
       printf("Type in the number to factorise: ");
       scanf("%d", &number_dec);
       int factors[100];
-      int div = 2;
-      int n = 0;
-      while (number_dec > 1) {
-        if (number_dec % div == 0) {
-          number_dec = number_dec / div;
-          factors[n] = div;
-          n++;
-        } else {
-          div++;
-        }
-      }
+      int n = factorise(number_dec, factors);
+
       printf("The factors if this number are: ");
       int i;
       for (i = 0; i < n; i++) {
@@ -190,6 +182,7 @@ int main() {
       printf("5: Quit\n");
       return 0;
       break;
+
     default:
       printf("Choose a correct operation\n");
       int c;
@@ -198,6 +191,21 @@ int main() {
     }
   }
   return 0;
+}
+
+int factorise(int number, int *factors) {
+  int div = 2;
+  int n = 0;
+  while (number > 1) {
+    if (number % div == 0) {
+      number = number / div;
+      factors[n] = div;
+      n++;
+    } else {
+      div++;
+    }
+  }
+  return n;
 }
 
 int findIndex(char symbol) {
