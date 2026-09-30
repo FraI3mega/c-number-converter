@@ -9,6 +9,9 @@ int toDecimal(char number[], int base);
 char *toOther(int number, int base);
 int validate(char input[]);
 int factorise(int number, int *factors);
+int findDivisors(int number, int *divisors);
+
+int comp(const void *a, const void *b);
 
 const char lookup_table[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // length 36
 
@@ -34,7 +37,7 @@ int main() {
   while (1) {
     printf("\nChoose an operation\n");
     printf("1: input to decimal\n2: decimal to other\n3: any to any\n4: RPN "
-           "Calculator\n5: Factorise number\n6: Quit\n");
+           "Calculator\n5: Check-A-Number\n6: Quit\n");
     int operation;
     int base;
     int base_out;
@@ -165,15 +168,22 @@ int main() {
       break;
 
     case 5:
-      printf("Type in the number to factorise: ");
+      printf("Type in the number to check: ");
       scanf("%d", &number_dec);
       int factors[100];
+      int divisors[100];
       int n = factorise(number_dec, factors);
+      int l = findDivisors(number_dec, divisors);
 
       printf("The factors if this number are: ");
       int i;
       for (i = 0; i < n; i++) {
         printf("%d ", factors[i]);
+      }
+      printf("\n");
+      printf("The divisors of this number are: ");
+      for (i = 0; i < l; i++) {
+        printf("%d ", divisors[i]);
       }
       printf("\n");
       continue;
@@ -206,6 +216,29 @@ int factorise(int number, int *factors) {
     }
   }
   return n;
+}
+int findDivisors(int number, int *divisors) {
+  int div;
+  int n = 0;
+  for (div = 1; div <= floor(pow(number, 0.5)); div++) {
+    if (number % div == 0) {
+      divisors[n++] = div;
+      divisors[n++] = number / div;
+    }
+  }
+  qsort(divisors, n, sizeof(divisors[0]), comp);
+  return n;
+}
+
+int comp(const void *a, const void *b) {
+  int x = *(const int *)a;
+  int y = *(const int *)b;
+
+  if (x < y)
+    return -1;
+  if (x > y)
+    return 1;
+  return 0;
 }
 
 int findIndex(char symbol) {
