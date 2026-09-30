@@ -175,7 +175,7 @@ int main() {
       int n = factorise(number_dec, factors);
       int l = findDivisors(number_dec, divisors);
 
-      printf("The factors if this number are: ");
+      printf("The factors of this number are: ");
       int i;
       for (i = 0; i < n; i++) {
         printf("%d ", factors[i]);
@@ -186,6 +186,26 @@ int main() {
         printf("%d ", divisors[i]);
       }
       printf("\n");
+
+      int sum = 0;
+      for (i = 0; i < l - 1; i++) {
+        sum += divisors[i];
+      }
+      printf("The aliquot sum of this number: %d\n", sum);
+
+      if (sum == 1) {
+        printf("This number is prime");
+      } else if (sum == number_dec) {
+        printf("This number is a perfect number");
+      } else if (sum < number_dec) {
+        printf("This number is a deficient number, with a deficit of %d",
+               number_dec - sum);
+      } else if (sum > number_dec) {
+        printf("This number is an abundant number, with abundance of %d",
+               sum - number_dec);
+      }
+      printf("\n");
+
       continue;
 
     case 6:
