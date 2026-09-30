@@ -187,6 +187,9 @@ int main() {
       break;
     default:
       printf("Choose a correct operation\n");
+      int c;
+      while ((c = getchar()) != '\n' && c != EOF)
+        ;
     }
   }
   return 0;
