@@ -147,6 +147,10 @@ int main() {
           op2 = *(--stackPntr);
           result = round(pow(op2, op1));
           *stackPntr++ = result;
+        } else if (strcmp(token, "v") == 0) {
+          op1 = *(--stackPntr);
+          result = round(pow(op1, 0.5));
+          *stackPntr++ = result;
         } else {
           *stackPntr++ = atoi(token);
         }
