@@ -2,7 +2,7 @@
 
 A little multi-tool for working with numbers in different bases
 
-TODO: hero image
+![An svg recording showcasing the multitool in action](./multitool.cast.svg)
 
 ## Features
 
@@ -15,7 +15,6 @@ TODO: hero image
 
 Contrary to the commonly used infix notation (2 + 2), in the Reverse Polish Notation the operand follows the argument (2 2 +) 
 This in turn allows us to type mathematical equations without the use of parenthesis.
-
 
 | Infix | RPN |
 | -------------- | --------------- |
