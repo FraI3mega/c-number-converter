@@ -113,6 +113,7 @@ int main() {
       int result;
       int op1;
       int op2;
+      printf("4: RPN calculator\n");
 
       printf("Type in the expression: ");
       scanf(" %[^\n]", input);
@@ -161,7 +162,9 @@ int main() {
       break;
 
     case 5:
+      printf("5: Check-A-Number\n");
       printf("Type in the number to check: ");
+
       scanf("%d", &number_dec);
       int factors[100];
       int divisors[100];
