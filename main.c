@@ -83,6 +83,8 @@ int main() {
         scanf("%s", input);
       } while (validate(input));
 
+      input_int = atoi(input);
+
       output = toOther(input_int, base);
       printf("The number %d in base %d is %s\n", input_int, base, output);
       break;
