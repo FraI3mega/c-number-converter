@@ -9,7 +9,7 @@ TODO: hero image
 - Conversion to and from decimal (only non-negative integers)
 - Any to any conversion (base between 2 and 36)
 - RPN calculator (integer numbers)
-- Number factorisation
+- Check-A-Number function
 
 ### RPN 101
 
