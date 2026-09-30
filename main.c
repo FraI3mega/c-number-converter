@@ -157,6 +157,7 @@ int main() {
         break;
       }
       printf("Result: %d\n", *(--stackPntr));
+      break;
 
     case 5:
       printf("Type in the number to factorise: ");
