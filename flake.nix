@@ -25,6 +25,9 @@
         pname = "c-number-converter"; # package name
         version = "0.0.1";
         src = ./.;
+
+        makeFlags = [ "LDFLAGS=-lm" ];
+
         buildInputs = with pkgs; [
           # add library dependencies here i.e.
           #zlib
@@ -72,6 +75,7 @@
             nativeBuildInputs
             pname
             version
+            makeFlags
             src
             ;
         };

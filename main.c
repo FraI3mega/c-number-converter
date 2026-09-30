@@ -1,4 +1,5 @@
 #include <ctype.h>
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -16,8 +17,8 @@ const char lookup_table[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // length 36
  * - error handling
  * - other converters
  * - cli
- * - --help
- * - maybe man page
+ * - square root
+ * - exponetation
  */
 
 struct Op {
@@ -141,6 +142,11 @@ int main() {
           op1 = *(--stackPntr);
           op2 = *(--stackPntr);
           result = op2 / op1;
+          *stackPntr++ = result;
+        } else if (strcmp(token, "^") == 0) {
+          op1 = *(--stackPntr);
+          op2 = *(--stackPntr);
+          result = round(pow(op2, op1));
           *stackPntr++ = result;
         } else {
           *stackPntr++ = atoi(token);
