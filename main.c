@@ -15,15 +15,6 @@ int comp(const void *a, const void *b);
 
 const char lookup_table[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // length 36
 
-/*
- * TODO: list of changes
- * - use dynamic input mem size
- * - error handling
- * - other converters
- * - cli
- * - square root
- */
-
 struct Op {
   char operand;
   int number;
@@ -203,7 +194,7 @@ int main() {
         printf("This number is a deficient number, with a deficit of %d",
                number_dec - sum);
       } else if (sum > number_dec) {
-        printf("This number is an abundant number, with abundance of %d",
+        printf("This number is an abundant number, with an abundance of %d",
                sum - number_dec);
       }
       printf("\n");
