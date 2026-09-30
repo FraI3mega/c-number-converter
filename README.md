@@ -50,7 +50,13 @@ You just need the GNU C Compiler, no other dependencies needed
 gcc main.c -lm -o c-number-converter
 ```
 
+## AI Disclosure
+
+I only used AI to look over the code, as it is my first time using C.
+No code was generated with it.
+
 ## Attributions
 
 - [W3Schools](https://www.w3schools.com/c/index.php) - A great source for learning C
 - Out To C - The ysws from [Hack Club](https://hackclub.com/) for which this project was made
+
