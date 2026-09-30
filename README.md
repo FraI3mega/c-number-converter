@@ -6,9 +6,10 @@ TODO: hero image
 
 ## Features
 
-- Conversion to and from decimal (only non-negative)
+- Conversion to and from decimal (only non-negative integers)
 - Any to any conversion (base between 2 and 36)
 - RPN calculator (integer numbers)
+- Number factorisation
 
 ### RPN 101
 
@@ -23,6 +24,7 @@ This in turn allows us to type mathematical equations without the use of parenth
 | a * b | a b * |
 | a / b | a b / |
 | a ^ b | a b ^ |
+| √a | a v |
 | 2 * 3 | 2 3 * |
 | (2 - 1) * 3 + 7 | 2 1 - 3 7 + * |
 | 16 / 2 * 4 | 16 2 4 * / |
