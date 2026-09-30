@@ -1,5 +1,5 @@
 {
-  description = "C Template";
+  description = "A little C number multitool";
 
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
@@ -21,8 +21,8 @@
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        pname = "c-number-converter"; # package name
-        version = "0.0.1";
+        pname = "c-number-multitool";
+        version = "0.1.0";
         src = ./.;
 
         makeFlags = [ "LDFLAGS=-lm" ];

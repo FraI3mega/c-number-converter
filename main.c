@@ -21,9 +21,9 @@ struct Op {
 };
 int main() {
 
-  printf("|=========================|\n");
-  printf("| Number System converter |\n");
-  printf("|=========================|\n");
+  printf("|====================|\n");
+  printf("| C Number Multitool |\n");
+  printf("|====================|\n");
 
   while (1) {
     printf("\nChoose an operation\n");
