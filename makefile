@@ -5,13 +5,15 @@ SOURCES = main.c
 CFLAGS = -Wall
 
 # Flags for linking (none for the moment)
-LDFLAGS =
+LDFLAGS = -lm
 
 # Libraries to link with (none for the moment)
 LIBS =
 
 # This creates a list of object files from the source files
 OBJECTS = $(SOURCES:%.c=%.o)
+
+pname ?= c-number-converter
 
 # The first target, this will be the default target if none is specified
 # This target tells "make" to make the "all" target
