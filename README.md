@@ -47,7 +47,7 @@ nix run github:FraI3mega/c-number-converter
 You just need the GNU C Compiler, no other dependencies needed
 
 ```bash
-gcc main.c -o c-number-converter
+gcc main.c -lm -o c-number-converter
 ```
 
 ## Attributions
